@@ -1,10 +1,25 @@
 require 'sys/proctable'
+require 'sequel'
 
 TEMPLATES = 'templates/'
 DEFAULT_BASE = TEMPLATES + 'base.eruby'
 DEFAULT_TITLE = 'The administrator tool'
 HOME = ENV["HOME"] 
 RADMIN_HOME = HOME + "/.radministrator"
+
+DB = Sequel.connect("sqlite://data.db")
+
+def init_db
+  init_procs
+end
+
+def init_procs
+  return if DB.table_exists? :monitored_procs
+  DB.create_table :monitored_procs do
+    primary_key :id
+    String :cmdline    
+  end
+end
 
 def format_to_html(output)
   output.gsub("\n", "<br />")
@@ -25,10 +40,26 @@ def register_server
   f.write(Process.pid)
 end
 
+def add_proc_to_monitor(procname)
+  procs = DB[:monitored_procs]
+  return if procs.where(:cmdline => procname).count > 0
+  procs.insert(:cmdline => procname)  
+end
+
+def del_proc_from_monitor(procname)
+  procs = DB[:monitored_procs]
+  return if procs.where(:cmdline => procname).count == 0
+  procs.where(:cmdline => procname).delete
+end
+
 def monitored_procs
-  [] 
+  procnames = DB[:monitored_procs].all.map{|p| p[:cmdline]}.join("|")
+  return [] if procnames == ""
+  all_procs.select{|p| p.cmdline =~ /#{procnames}/i}
 end
 
 def all_procs
   Sys::ProcTable.ps
 end
+
+init_db

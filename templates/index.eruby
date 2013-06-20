@@ -1,10 +1,8 @@
-
-<div class="container">
-   <h1>Monitored processes</h1>
-   
-   <ul>
-     <% processes.each do |process| %>
-        <li><%= process.cmdline %></li>
-     <% end %>
-   </ul>
-</div>
+ <h1>Monitored processes</h1>
+ 
+ <ul>
+   <% processes.each do |process| %>
+      <li><%= process.cmdline %></li>
+   <% end %>
+ </ul>
+ <a href="/attach_to_monitor">Attach new proc to monitor</a>

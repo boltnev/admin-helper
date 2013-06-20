@@ -1,0 +1,5 @@
+
+<form action="/attach_to_monitor" method="post">
+  <input name="procname" type='text' />
+  <input type='submit' value="Attach process">
+</form>

@@ -12,16 +12,18 @@
 
   <body>
   	<div class="navbar navbar-fixed-top navbar-inner">
-      <div class="container">
-        <ul class="nav">				  
-          <li><a href="/">Monitoring</></li>
-        </ul>	  
+      <div class="container"> 
+         <ul class="nav">				  
+           <li><a href="/">Monitoring</></a></li>
+         </ul>	  
       </div>
     </div>
 
 
-    <%= html %>
-  </body>
+    <div class="container">
+      <%= html %>
+    </div>  
+</body>
 
 
 </html>
