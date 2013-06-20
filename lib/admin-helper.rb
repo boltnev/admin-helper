@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'erubis'
-require './model'
+require 'admin-helper/model'
 
 register_server
 
@@ -9,7 +9,7 @@ get '/' do
 end
 
 get '/attach_to_monitor' do
-  _render :attach, {:processes => monitored_procs }
+  _render :attach, {:processes => DB[:monitored_procs].all }
 end
 
 post '/attach_to_monitor' do
