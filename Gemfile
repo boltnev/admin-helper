@@ -4,4 +4,6 @@ gem 'sinatra'
 gem 'erubis'
 gem 'sqlite3'
 gem 'sequel'
+gem 'sys-proctable'
 gem 'debugger'
+

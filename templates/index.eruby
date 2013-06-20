@@ -1,0 +1,10 @@
+
+<div class="container">
+   <h1>Monitored processes</h1>
+   
+   <ul>
+     <% processes.each do |process| %>
+        <li><%= process.cmdline %></li>
+     <% end %>
+   </ul>
+</div>
