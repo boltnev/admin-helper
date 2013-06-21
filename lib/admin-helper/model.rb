@@ -1,13 +1,13 @@
 require 'sys/proctable'
 require 'sequel'
 
-TEMPLATES = 'templates/'
+TEMPLATES = File.dirname(__FILE__) + '/../view/'
 DEFAULT_BASE = TEMPLATES + 'base.eruby'
 DEFAULT_TITLE = 'The administrator tool'
 HOME = ENV["HOME"] 
 RADMIN_HOME = HOME + "/.radministrator"
-
-DB = Sequel.connect("sqlite://data.db")
+DBPATH = RADMIN_HOME + "/data.db"
+DB = Sequel.connect("sqlite://#{DBPATH}")
 
 def init_db
   init_procs
