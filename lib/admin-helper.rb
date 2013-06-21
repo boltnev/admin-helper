@@ -38,15 +38,4 @@ post '/unattach_process' do
   render_to_s(:attach, {:processes => DB[:monitored_procs].all})
 end
 
-get "/command/:command" do
-  begin
-    command = params[:command]
-    output = `#{command}`
-  rescue Errno::ENOENT 
-    output = "No such file or directory: " + command
-  end
-  _render(:command, {:command => command, 
-                    :output => format_to_html( output )})
-end
-
 
