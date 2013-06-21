@@ -5,6 +5,6 @@ Usage:
 
 run on server 
     
-     ruby admin.rb
+     admin-helper
 
 server will be on 4567 port
