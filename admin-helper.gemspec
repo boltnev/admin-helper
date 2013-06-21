@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.1'
   s.date        = Date.today.to_s
   s.summary     = "The administrator tool"
-  s.description = ""
+  s.description = "The server administrator helper. It has process manager, it also can kill processes from web. To use, just run `admin-helper` on server"
   s.authors     = ["Ilya Boltnev"]
   s.email       = 'ilya@boltnev.com'
   s.files       = Dir['lib/**/*/*'] + Dir['lib/*'] 
