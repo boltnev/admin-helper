@@ -6,12 +6,18 @@ Gem::Specification.new do |s|
   s.description = ""
   s.authors     = ["Ilya Boltnev"]
   s.email       = 'ilya@boltnev.com'
-  s.files       = ["lib/admin-helper.rb", "lib/admin-helper/model.rb",
-                   "lib/view/attach.eruby",
-                   "lib/view/base.eruby",
-                   "lib/view/command.eruby",
-                   "lib/view/index.eruby"]
+  s.files       = Dir['lib/**/*/*'] + Dir['lib/*'] 
   s.executables = ["admin-helper"]
   s.homepage    = 'https://github.com/boltnev/admin-helper'
+
+  s.add_runtime_dependency 'thin'
+  s.add_runtime_dependency 'sinatra'
+  s.add_runtime_dependency 'erubis'
+  s.add_runtime_dependency 'sqlite3'
+  s.add_runtime_dependency 'sequel'
+  s.add_runtime_dependency 'sys-proctable'
+  s.add_development_dependency 'debugger'
+
 end
+
 

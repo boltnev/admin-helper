@@ -5,6 +5,7 @@ require 'admin-helper/model'
 
 register_server
 
+set :public_folder, File.dirname(__FILE__) + '/view/public'
 get '/' do
   _render :index, {:processes => monitored_procs.sort_by(&:pid).reverse }
 end
