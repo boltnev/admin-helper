@@ -66,4 +66,7 @@ def all_procs
   Sys::ProcTable.ps
 end
 
+def kill9(pid)
+  `kill -9 #{pid}`
+end
 init_db

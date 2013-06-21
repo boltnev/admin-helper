@@ -1,32 +1,37 @@
- <h1>Monitored processes</h1>
- 
- <table class="table table-hover">
-   <thead>
-     <th>pid</th>
-     <th>procname</th>
-     <th>is active?</th>
-   </thead>
-   <tbody>
-     <% monitored_procs.each do |mproc| %>
-       <%
-          active = all_procs.select{|p| p.cmdline =~ /#{mproc[:cmdline]}/i }
-          if (active && active.count > 0) 
-            active.each do |ap| %>
-               <tr class="success">
-                 <td><%= ap.pid %></td>
-                 <td><%= ap.cmdline %></td>
-                 <td>Yes</td>
-               </tr>
-            <% end %>
-          <% else %>
-            <tr class="error">
-              <td>None</td>
-              <td><%= mproc[:cmdline] %></td>
-              <td>No</td>
-            </tr> 
-          <% end  %>
-     <% end %>
-    
-  </tbody>
- </table>
- <a href="/attach_to_monitor">Attach new process to monitor</a>
+<div id="index"> 
+  <h1>Monitored processes</h1>
+   
+   <table class="table table-hover">
+     <thead>
+       <th>pid</th>
+       <th>procname</th>
+       <th>is active?</th>
+       <th></th>
+     </thead>
+     <tbody>
+       <% monitored_procs.each do |mproc| %>
+         <%
+            active = all_procs.select{|p| p.cmdline =~ /#{mproc[:cmdline]}/i }
+            if (active && active.count > 0) 
+              active.each do |ap| %>
+                 <tr class="success">
+                   <td><%= ap.pid %></td>
+                   <td><%= ap.cmdline %></td>
+                   <td>Yes</td>
+                   <td><input value="Kill" type="button" class="btn btn-danger" onclick="kill9('<%= ap.pid %>'); return false;" /></td>
+                 </tr>
+              <% end %>
+            <% else %>
+              <tr class="error">
+                <td>None</td>
+                <td><%= mproc[:cmdline] %></td>
+                <td>No</td>
+                <td></td>
+              </tr> 
+            <% end  %>
+       <% end %>
+      
+    </tbody>
+   </table>
+   <a href="/attach_to_monitor">Attach new process to monitor</a>
+</div>

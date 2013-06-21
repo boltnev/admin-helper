@@ -10,7 +10,7 @@
        <% processes.each do |process| %>
          <tr>
            <td><%= process[:cmdline] %></td>
-           <td><input type="button" value="Unmonitor" onclick="unattach('<%= process[:cmdline]%>'); return false;"/></td>
+           <td><input type="button" class="btn btn-primary" value="Unmonitor" onclick="unattach('<%= process[:cmdline]%>'); return false;"/></td>
          </tr>
        <% end %>
         
@@ -18,7 +18,7 @@
    </table>
 
   <form action="/attach_to_monitor" method="post">
-    <input name="procname" type='text' />
-    <input type='submit' value="Attach process">
+    <input name="procname" type='text' /><br />
+    <input type='submit' class="btn btn-primary" value="Attach process">
   </form>
 </div>

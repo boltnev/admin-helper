@@ -19,6 +19,20 @@ post '/attach_to_monitor' do
   redirect '/attach_to_monitor'
 end
 
+post '/kill9' do
+  begin 
+    procs = all_procs
+    pid = params[:pid].to_i
+    monitored_procs.map(&:pid).include? pid
+    kill9(pid)
+  rescue 
+    # cannot kill9
+  end
+  procs.delete_if{|p| p.pid == pid }
+  render_to_s :index, {:all_procs => procs, 
+                   :monitored_procs => DB[:monitored_procs].all }
+end
+
 post '/unattach_process' do
   del_proc_from_monitor(params[:procname]);
   render_to_s(:attach, {:processes => DB[:monitored_procs].all})
