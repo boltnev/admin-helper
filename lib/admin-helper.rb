@@ -6,8 +6,9 @@ require 'admin-helper/model'
 register_server
 
 set :public_folder, File.dirname(__FILE__) + '/view/public'
+
 get '/' do
-  _render :index, {:processes => monitored_procs.sort_by(&:pid).reverse }
+  _render :index, {:all_procs => all_procs, :monitored_procs => DB[:monitored_procs].all }
 end
 
 get '/attach_to_monitor' do
