@@ -7,6 +7,7 @@
 
     <script type="text/javascript" charset="UTF-8" src="js/jquery-2.0.0.min.js"></script>
     <script type="text/javascript" charset="UTF-8" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="js/admin.js"></script>
     <title><%= title %></title>
   </head>
 

@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require 'sinatra'
-require 'erubis'
 require 'admin-helper/model'
 
 register_server
@@ -17,7 +16,12 @@ end
 
 post '/attach_to_monitor' do
   add_proc_to_monitor(params[:procname])
-  redirect ''
+  redirect '/attach_to_monitor'
+end
+
+post '/unattach_process' do
+  del_proc_from_monitor(params[:procname]);
+  render_to_s(:attach, {:processes => DB[:monitored_procs].all})
 end
 
 get "/command/:command" do

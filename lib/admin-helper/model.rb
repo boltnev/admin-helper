@@ -1,3 +1,4 @@
+require 'erubis'
 require 'sys/proctable'
 require 'sequel'
 
@@ -26,12 +27,15 @@ def format_to_html(output)
 end
 
 def _render(template_name, options = {}, title = DEFAULT_TITLE,  base_name = DEFAULT_BASE)
-  template_name = template_name.to_s
-  template = File.read(TEMPLATES + template_name + '.eruby')
-  html = Erubis::Eruby.new(template).result(options)
+  html = render_to_s(template_name, options)
   base_template = File.read(base_name)
   base = Erubis::Eruby.new(base_template)
   base.result(:title => title, :html => html)
+end
+
+def render_to_s(template_name, options = {})
+  template = File.read(TEMPLATES + template_name.to_s + '.eruby')
+  Erubis::Eruby.new(template).result(options)
 end
 
 def register_server
